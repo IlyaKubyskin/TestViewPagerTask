@@ -12,13 +12,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val vpAdapter = object : FragmentStatePagerAdapter(supportFragmentManager) {
+        viewPager.adapter = object : FragmentStatePagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int) = FragmentViewPager.newInstance(position)
 
             override fun getCount() = 3
         }
-
-        viewPager.adapter = vpAdapter
 
         viewPager.setPageTransformer(true) { view, position ->
            // textView.alpha = 1.0f - Math.abs(position)
