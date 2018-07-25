@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_layout.*
 
 class FragmentViewPager : Fragment() {
@@ -29,8 +30,6 @@ class FragmentViewPager : Fragment() {
             1 -> imageViewFragment.setImageResource(R.drawable.flowers2)
             2 -> imageViewFragment.setImageResource(R.drawable.flowers3)
         }
-
-        textView.text = StringBuffer("This page's number is: ").append(page).toString()
     }
 
     companion object {
