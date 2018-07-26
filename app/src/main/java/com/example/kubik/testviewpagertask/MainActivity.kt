@@ -8,7 +8,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var prevPositionOffset = 0f
+    private var prevPositionOffset = 0f
+    private val textList = listOf("Frag_1", "Frag_2", "Frag_3")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             override fun getCount() = 3
         }
 
-        setText(viewPager.currentItem)
+        setText(textList[viewPager.currentItem])
 
         tabLayout.setupWithViewPager(viewPager, true)
 
@@ -33,15 +34,15 @@ class MainActivity : AppCompatActivity() {
                 val currentItem = viewPager.currentItem
                 if (currentItem == position) {
                     if (prevPositionOffset < 0.5f && positionOffset >= 0.5f) {
-                        setText(currentItem + 1)
+                        setText(textList[currentItem + 1])
                     } else if (prevPositionOffset >= 0.5f && positionOffset < 0.5f) {
-                        setText(currentItem)
+                        setText(textList[currentItem])
                     }
                 } else {
                     if (prevPositionOffset < 0.5f && positionOffset >= 0.5f) {
-                        setText(currentItem)
+                        setText(textList[currentItem])
                     } else if (prevPositionOffset >= 0.5f && positionOffset < 0.5f) {
-                        setText(currentItem - 1)
+                        setText(textList[currentItem - 1])
                     }
                 }
                 prevPositionOffset = positionOffset
@@ -52,8 +53,8 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun setText(text: Int) = textView.apply {
-        this.text = StringBuffer("This page's number is: ").append(text).toString()
+    private fun setText(text: String) = textView.apply {
+        this.text = text// StringBuffer("This page's number is: ").append(text).toString()
     }
 
     private fun setAlpha(alpha: Float) = textView.apply {
