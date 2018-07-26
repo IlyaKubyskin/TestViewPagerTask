@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Math.abs
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = object : FragmentStatePagerAdapter(supportFragmentManager) {
             override fun getItem(position: Int) = FragmentViewPager.newInstance(position)
 
-            override fun getCount() = 3
+            override fun getCount() = textList.size
         }
 
         setText(textList[viewPager.currentItem])
@@ -31,7 +32,15 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+
                 val currentItem = viewPager.currentItem
+
+                if (positionOffset in 0f..0.5f) {
+                    setAlpha(abs(1f - positionOffset * 2))
+                } else if (positionOffset in 0.5f..1f) {
+                    setAlpha(abs(positionOffset * 2 - 1f))
+                }
+
                 if (currentItem == position) {
                     if (prevPositionOffset < 0.5f && positionOffset >= 0.5f) {
                         if (currentItem != textList.size) {
