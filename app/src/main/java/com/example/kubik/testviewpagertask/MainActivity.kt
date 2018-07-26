@@ -34,7 +34,9 @@ class MainActivity : AppCompatActivity() {
                 val currentItem = viewPager.currentItem
                 if (currentItem == position) {
                     if (prevPositionOffset < 0.5f && positionOffset >= 0.5f) {
-                        setText(textList[currentItem + 1])
+                        if (currentItem != textList.size) {
+                            setText(textList[currentItem + 1])
+                        }
                     } else if (prevPositionOffset >= 0.5f && positionOffset < 0.5f) {
                         setText(textList[currentItem])
                     }
@@ -42,19 +44,30 @@ class MainActivity : AppCompatActivity() {
                     if (prevPositionOffset < 0.5f && positionOffset >= 0.5f) {
                         setText(textList[currentItem])
                     } else if (prevPositionOffset >= 0.5f && positionOffset < 0.5f) {
-                        setText(textList[currentItem - 1])
+                        if (currentItem != 0 ) {
+                            if (currentItem != viewPager.childCount - 2) {
+                                setText(textList[currentItem - 1])
+                            } else {
+                                setText(textList[position])
+                            }
+                        } else {
+                            return
+                        }
                     }
                 }
+
                 prevPositionOffset = positionOffset
             }
 
             override fun onPageSelected(position: Int) {
+                setText(textList[position])
+                setAlpha(1f)
             }
         })
     }
 
     private fun setText(text: String) = textView.apply {
-        this.text = text// StringBuffer("This page's number is: ").append(text).toString()
+        this.text = text
     }
 
     private fun setAlpha(alpha: Float) = textView.apply {
