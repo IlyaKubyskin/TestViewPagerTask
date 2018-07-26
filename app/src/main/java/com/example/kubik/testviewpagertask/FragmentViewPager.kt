@@ -16,10 +16,9 @@ class FragmentViewPager : Fragment() {
         page = arguments?.getInt(PAGE) ?: 0
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_layout, container, false)
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.fragment_layout, container, false)
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,7 +33,7 @@ class FragmentViewPager : Fragment() {
     companion object {
         private const val PAGE = "page"
 
-        fun newInstance(page: Int):FragmentViewPager {
+        fun newInstance(page: Int): FragmentViewPager {
             val fragment = FragmentViewPager()
             fragment.arguments = Bundle().apply {
                 putInt(PAGE, page)
