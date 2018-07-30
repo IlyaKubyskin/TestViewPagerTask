@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.fragment_layout.*
 
 class FragmentViewPager : Fragment() {
 
-    var page: Int = -1
+    private var page: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +27,9 @@ class FragmentViewPager : Fragment() {
             0 -> imageViewFragment.setImageResource(R.drawable.flowers1)
             1 -> imageViewFragment.setImageResource(R.drawable.flowers2)
             2 -> imageViewFragment.setImageResource(R.drawable.flowers3)
+            3 -> imageViewFragment.setImageResource(R.drawable.flowers4)
+            4 -> imageViewFragment.setImageResource(R.drawable.flowers5)
+            5 -> imageViewFragment.setImageResource(R.drawable.flowers6)
         }
     }
 

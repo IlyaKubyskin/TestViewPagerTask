@@ -10,7 +10,8 @@ import java.lang.Math.abs
 class MainActivity : AppCompatActivity() {
 
     private var prevPositionOffset = 0f
-    private val textList = listOf("Frag_1", "Frag_2", "Frag_3")
+    private var prevPosition = 0
+    private val textList = listOf("Frag_1", "Frag_2", "Frag_3", "Frag_4", "Frag_5", "Frag_6")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,30 +43,21 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 if (currentItem == position) {
-                    if (prevPositionOffset < 0.5f && positionOffset >= 0.5f) {
-                        if (currentItem != textList.size) {
-                            setText(textList[currentItem + 1])
-                        }
+                    if (prevPositionOffset < 0.5f && positionOffset >= 0.5f && currentItem != textList.size) {
+                        setText(textList[currentItem + 1])
                     } else if (prevPositionOffset >= 0.5f && positionOffset < 0.5f) {
                         setText(textList[currentItem])
                     }
                 } else {
                     if (prevPositionOffset < 0.5f && positionOffset >= 0.5f) {
                         setText(textList[currentItem])
-                    } else if (prevPositionOffset >= 0.5f && positionOffset < 0.5f) {
-                        if (currentItem != 0 ) {
-                            if (currentItem != viewPager.childCount - 2) {
-                                setText(textList[currentItem - 1])
-                            } else {
-                                setText(textList[position])
-                            }
-                        } else {
-                            return
-                        }
+                    } else if (prevPositionOffset >= 0.5f && positionOffset < 0.5f && currentItem != 0 && currentItem != prevPosition) {
+                        setText(textList[currentItem - 1])
                     }
                 }
 
                 prevPositionOffset = positionOffset
+                prevPosition = position
             }
 
             override fun onPageSelected(position: Int) {
