@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                         setText(textList[currentItem - 1])
                     }
                 }
-
                 prevPositionOffset = positionOffset
                 prevPosition = position
             }
